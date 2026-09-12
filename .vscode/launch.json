@@ -1,0 +1,59 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Document app (prompt for name)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/document_app.py",
+      "args": ["--app", "${input:appName}", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true
+    },
+    {
+      "name": "Document apps from config.json",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/document_app.py",
+      "args": ["-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "List model-driven apps",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/document_app.py",
+      "args": ["--list-apps"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Test connection (WhoAmI)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/document_app.py",
+      "args": ["--whoami"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Run unit tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "unittest",
+      "args": ["discover", "-s", "tests", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "appName",
+      "type": "promptString",
+      "description": "Model-driven app display name or unique name",
+      "default": "Sales Hub"
+    }
+  ]
+}

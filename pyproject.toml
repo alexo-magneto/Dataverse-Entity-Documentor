@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataverse-app-documentor"
+version = "1.0.0"
+description = "Document every component and entity used by a Dataverse model-driven app into Excel."
+requires-python = ">=3.10"
+dependencies = ["requests>=2.31", "msal>=1.28", "openpyxl>=3.1"]
+
+[project.scripts]
+dataverse-app-documentor = "dataverse_app_documentor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

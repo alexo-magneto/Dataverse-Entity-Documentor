@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dataverse App Documentor configuration",
+  "type": "object",
+  "required": ["environmentUrl", "auth"],
+  "properties": {
+    "environmentUrl": { "type": "string", "description": "Dataverse environment URL, e.g. https://contoso.crm.dynamics.com" },
+    "apiVersion": { "type": "string", "default": "v9.2" },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string", "enum": ["clientCredentials", "clientCertificate", "interactive", "deviceCode", "accessToken"] },
+        "tenantId": { "type": "string" },
+        "clientId": { "type": "string", "description": "Entra ID app registration (client) id" },
+        "clientSecret": { "type": "string", "description": "Prefer env var DATAVERSE_CLIENT_SECRET over storing it here" },
+        "certificatePath": { "type": "string" },
+        "certificateThumbprint": { "type": "string" },
+        "certificatePassword": { "type": "string" },
+        "authority": { "type": "string" },
+        "tokenCachePath": { "type": "string" }
+      }
+    },
+    "apps": { "type": "array", "items": { "type": "string" }, "description": "App display names or unique names to document" },
+    "output": {
+      "type": "object",
+      "properties": {
+        "directory": { "type": "string" },
+        "fileName": { "type": "string", "description": "Supports {app} and {timestamp} placeholders" },
+        "singleWorkbook": { "type": "boolean" },
+        "writeJson": { "type": "boolean" }
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "properties": {
+        "traversalDepth": { "type": "integer", "minimum": 0, "description": "0 = app components + sitemap only; 1 = walk forms/views/charts of the app's entities; 2+ = also walk entities discovered from those forms" },
+        "formTypes": { "type": "array", "items": { "type": "integer" }, "description": "systemform.type values to walk: 2 Main, 6 Quick View, 7 Quick Create, 11 Card, 12 Main Interactive" },
+        "includeInactiveForms": { "type": "boolean" },
+        "attributeScope": { "type": "string", "enum": ["form", "all", "none"] },
+        "includeAllRelationships": { "type": "boolean" },
+        "timelineIncludeAllActivityEntities": { "type": "boolean" },
+        "includeViews": { "type": "boolean" },
+        "includeCharts": { "type": "boolean" },
+        "ignoreLookupAttributes": { "type": "array", "items": { "type": "string" } },
+        "excludeEntities": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

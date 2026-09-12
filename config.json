@@ -1,0 +1,40 @@
+{
+  "$schema": "./config.schema.json",
+  "environmentUrl": "https://booltrial.crm11.dynamics.com",
+  "apiVersion": "v9.2",
+
+  "auth": {
+    "mode": "clientCredentials",
+    "tenantId": "",
+    "clientId": "",
+    "clientSecret": "",
+    "certificatePath": "",
+    "certificateThumbprint": "",
+    "authority": "",
+    "tokenCachePath": ""
+  },
+
+  "apps": [
+    "Tiny App"
+  ],
+
+  "output": {
+    "directory": "./output",
+    "fileName": "{app}-app-components-{timestamp}.xlsx",
+    "singleWorkbook": true,
+    "writeJson": false
+  },
+
+  "discovery": {
+    "traversalDepth": 1,
+    "formTypes": [2, 6, 7, 11, 12],
+    "includeInactiveForms": false,
+    "attributeScope": "form",
+    "includeAllRelationships": false,
+    "timelineIncludeAllActivityEntities": true,
+    "includeViews": true,
+    "includeCharts": true,
+    "ignoreLookupAttributes": [],
+    "excludeEntities": []
+  }
+}

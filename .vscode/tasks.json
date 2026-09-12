@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: create venv and install dependencies",
+      "type": "shell",
+      "command": "python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
+      "windows": { "command": "py -3 -m venv .venv; .venv\\Scripts\\pip install -r requirements.txt" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Document app",
+      "type": "shell",
+      "command": ".venv/bin/python document_app.py --app \"${input:appName}\" -v",
+      "windows": { "command": ".venv\\Scripts\\python document_app.py --app \"${input:appName}\" -v" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Document apps listed in config.json",
+      "type": "shell",
+      "command": ".venv/bin/python document_app.py -v",
+      "windows": { "command": ".venv\\Scripts\\python document_app.py -v" },
+      "problemMatcher": []
+    },
+    {
+      "label": "List model-driven apps",
+      "type": "shell",
+      "command": ".venv/bin/python document_app.py --list-apps",
+      "windows": { "command": ".venv\\Scripts\\python document_app.py --list-apps" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test connection (WhoAmI)",
+      "type": "shell",
+      "command": ".venv/bin/python document_app.py --whoami",
+      "windows": { "command": ".venv\\Scripts\\python document_app.py --whoami" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run unit tests",
+      "type": "shell",
+      "command": ".venv/bin/python -m unittest discover -s tests -v",
+      "windows": { "command": ".venv\\Scripts\\python -m unittest discover -s tests -v" },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "PAC: discover environments and apps",
+      "type": "shell",
+      "command": "bash scripts/pac-discover.sh",
+      "windows": { "command": "powershell -ExecutionPolicy Bypass -File scripts/pac-discover.ps1" },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "appName",
+      "type": "promptString",
+      "description": "Model-driven app display name or unique name",
+      "default": "Sales Hub"
+    }
+  ]
+}
