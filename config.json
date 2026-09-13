@@ -1,6 +1,6 @@
 {
   "$schema": "./config.schema.json",
-  "environmentUrl": "https://booltrial.crm11.dynamics.com",
+  "environmentUrl": "https://yoururl.crm11.dynamics.com",
   "apiVersion": "v9.2",
 
   "auth": {
